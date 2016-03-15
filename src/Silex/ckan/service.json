@@ -74,7 +74,7 @@
         },
         "GetRevisionSinceRevision": {
             "httpMethod": "GET",
-            "uri": "search/revision?since_id={revision_id}",
+            "uri": "3/search/revision?since_id={revision_id}",
             "summary": "List revisions since revsion id.",
             "responseClass": "GetRevisionsOutput",
             "parameters": {
@@ -87,7 +87,7 @@
         },
         "GetRevisionSinceTime": {
             "httpMethod": "GET",
-            "uri": "search/revision?since_time={date_time}",
+            "uri": "3/search/revision?since_time={date_time}",
             "summary": "List revisions since time.",
             "responseClass": "GetRevisionsOutput",
             "parameters": {
@@ -100,7 +100,7 @@
         },
         "PublisherShow": {
             "httpMethod": "GET",
-            "uri": "action/publisher_show?id={id}",
+            "uri": "3/action/publisher_show?id={id}",
             "summary": "Retrieves publisher details",
             "responseClass": "PublisherShowOutput",
             "parameters": {
@@ -113,7 +113,7 @@
         },
         "PackageSearch": {
             "httpMethod": "GET",
-            "uri": "action/package_search",
+            "uri": "3/action/package_search",
             "summary": "Searches for packages satisfying a given search criteria.\n This action accepts solr search query parameters (details below), and returns a dictionary of results, including dictized datasets that match the search criteria, a search count and also facet information.",
             "responseClass": "PackageSearchResult",
             "parameters": {
@@ -131,7 +131,7 @@
         },
         "PackageCreate": {
             "httpMethod": "POST",
-            "uri": "action/package_create",
+            "uri": "3/action/package_create",
             "summary": "Creates a CKAN Package given a JSON package defintion.",
             "responseClass": "CkanApiOutput",
             "parameters": {
@@ -149,7 +149,7 @@
         },
         "PackageUpdate": {
             "httpMethod": "POST",
-            "uri": "action/package_update",
+            "uri": "3/action/package_update",
             "summary": "Updates a CKAN Pacakage.",
             "responseClass": "CkanApiOutput",
             "parameters": {
@@ -167,7 +167,7 @@
         },
         "PackageDelete": {
             "httpMethod": "POST",
-            "uri": "action/package_delete",
+            "uri": "3/action/package_delete",
             "summary": "Deletes a CKAN Pacakage given and Id/Name.",
             "responseClass": "CkanApiOutput",
             "parameters": {
@@ -176,9 +176,22 @@
                 }
             }
         },
+        "GetResource": {
+            "httpMethod": "GET",
+            "uri": "3/action/resource_show?id={id}",
+            "summary": "Retrieves a resource",
+            "responseClass": "GetResourceOutput",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Dataset reference to retrieve",
+                    "required": true
+                }
+            }
+        },
         "ResourceCreate": {
             "httpMethod": "POST",
-            "uri": "action/resource_create",
+            "uri": "3/action/resource_create",
             "summary": "Creates a CKAN resource and associates it with a package",
             "responseClass": "CkanApiOutput",
             "parameters": {
@@ -196,7 +209,7 @@
         },
         "ResourceSearch":{
             "httpMethod": "GET",
-            "uri": "action/resource_search",
+            "uri": "3/action/resource_search",
             "summary": "Search for a ckan resource.",
             "response_class":"CkanApiOutput",
             "parameters": {
@@ -216,7 +229,7 @@
         },
         "ResourceUpdate": {
             "httpMethod": "post",
-            "uri": "action/resource_update",
+            "uri": "3/action/resource_update",
             "summary": "Update a ckan resource.",
             "response_class":"CkanApiOutput",
             "parameters": {
@@ -230,6 +243,98 @@
                     "default" : "application/json",
                     "sentAs" : "Content-Type"
                 }
+            }
+        },
+        "DatastoreCreate": {
+            "httpMethod": "POST",
+            "uri": "3/action/datastore_create",
+            "summary": "Creates a CKAN datastore and associates it with a resource",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
+        "DatastoreInsert": {
+            "httpMethod": "POST",
+            "uri": "3/action/datastore_upsert",
+            "summary": "Insert data into the datastore of specified resource",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
+        "DatastoreDelete": {
+            "httpMethod": "POST",
+            "uri": "3/action/datastore_delete",
+            "summary": "Deletes a CKAN datastore using given resource_id",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
+        "DatastoreSearch":{
+            "httpMethod": "GET",
+            "uri": "3/action/datastore_search",
+            "summary": "Search for a ckan datastore",
+            "response_class":"CkanApiOutput",
+            "parameters": {
+              "resource_id":{
+                  "location": "query"
+              },
+              "filters":{
+                  "location": "query"
+              },
+              "q":{
+                  "location": "query"
+              },
+              "distinct":{
+                  "location": "query"
+              },
+              "plain":{
+                  "location": "query"
+              },
+              "language":{
+                  "location": "query"
+              },
+              "limit":{
+                  "location": "query"
+              },
+              "offset":{
+                  "location": "query"
+              },
+              "fields":{
+                  "location": "query"
+              },
+              "sort":{
+                  "location":"query"
+              }
             }
         }
     },
@@ -275,6 +380,23 @@
             }
         },
         "GetDatasetOutput": {
+            "type": "object",
+            "properties": {
+                "help": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "success": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "result": {
+                    "location": "json",
+                    "type": "object"
+                }
+            }
+        },
+        "GetResourceOutput": {
             "type": "object",
             "properties": {
                 "help": {
