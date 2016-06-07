@@ -141,27 +141,32 @@
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
         "PackageUpdate": {
             "httpMethod": "POST",
-            "uri": "3/action/package_update",
+            "uri": "3/action/package_update?id={id}",
             "summary": "Updates a CKAN Pacakage.",
             "responseClass": "CkanApiOutput",
             "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "The id of the dataset to retrieve",
+                    "required": true
+                },
                 "data": {
                     "location": "body"
                 },
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
@@ -171,8 +176,15 @@
             "summary": "Deletes a CKAN Pacakage given and Id/Name.",
             "responseClass": "CkanApiOutput",
             "parameters": {
-                "id": {
-                    "location": "postField"
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
@@ -201,29 +213,29 @@
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
-        "ResourceSearch":{
+        "ResourceSearch": {
             "httpMethod": "GET",
             "uri": "3/action/resource_search",
             "summary": "Search for a ckan resource.",
-            "response_class":"CkanApiOutput",
+            "response_class": "CkanApiOutput",
             "parameters": {
-                "query":{
+                "query": {
                     "location": "query"
                 },
-                "order_by":{
+                "order_by": {
                     "location": "query"
                 },
-                "offset":{
+                "offset": {
                     "location": "query"
                 },
-                "limit":{
-                    "location":"query"
+                "limit": {
+                    "location": "query"
                 }
             }
         },
@@ -231,17 +243,17 @@
             "httpMethod": "post",
             "uri": "3/action/resource_update",
             "summary": "Update a ckan resource.",
-            "response_class":"CkanApiOutput",
+            "response_class": "CkanApiOutput",
             "parameters": {
-                "data":{
+                "data": {
                     "location": "body"
                 },
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
@@ -257,9 +269,9 @@
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
@@ -275,9 +287,9 @@
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
@@ -293,52 +305,51 @@
                 "content-type": {
                     "location": "header",
                     "static": true,
-                    "required" : true,
-                    "default" : "application/json",
-                    "sentAs" : "Content-Type"
+                    "required": true,
+                    "default": "application/json",
+                    "sentAs": "Content-Type"
                 }
             }
         },
-        "DatastoreSearch":{
+        "DatastoreSearch": {
             "httpMethod": "GET",
             "uri": "3/action/datastore_search",
             "summary": "Search for a ckan datastore",
-            "response_class":"CkanApiOutput",
+            "response_class": "CkanApiOutput",
             "parameters": {
-              "resource_id":{
-                  "location": "query"
-              },
-              "filters":{
-                  "location": "query"
-              },
-              "q":{
-                  "location": "query"
-              },
-              "distinct":{
-                  "location": "query"
-              },
-              "plain":{
-                  "location": "query"
-              },
-              "language":{
-                  "location": "query"
-              },
-              "limit":{
-                  "location": "query"
-              },
-              "offset":{
-                  "location": "query"
-              },
-              "fields":{
-                  "location": "query"
-              },
-              "sort":{
-                  "location":"query"
-              }
+                "resource_id": {
+                    "location": "query"
+                },
+                "filters": {
+                    "location": "query"
+                },
+                "q": {
+                    "location": "query"
+                },
+                "distinct": {
+                    "location": "query"
+                },
+                "plain": {
+                    "location": "query"
+                },
+                "language": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                },
+                "fields": {
+                    "location": "query"
+                },
+                "sort": {
+                    "location": "query"
+                }
             }
         }
     },
-
     "models": {
         "PublisherShowOutput": {
             "type": "object",
@@ -372,10 +383,17 @@
         "GetDatasetsOutput": {
             "type": "object",
             "properties": {
-                "datasets": {
-                    "description": "List of datasets as a JSON document",
-                    "type": "string",
-                    "location": "json"
+                "help": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "success": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "result": {
+                    "location": "json",
+                    "type": "object"
                 }
             }
         },
@@ -430,7 +448,6 @@
                 }
             }
         },
-
         "GetGroupsOutput": {
             "type": "object",
             "properties": {
@@ -441,7 +458,7 @@
                 }
             }
         },
- 	    "GetRevisionsOutput": {
+        "GetRevisionsOutput": {
             "type": "object",
             "properties": {
                 "id": {
@@ -503,25 +520,25 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "title": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "owner_org": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "license_id": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "notes": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "tags": {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "type" : "string"
+                            "type": "string"
                         }
                     }
                 },
@@ -529,17 +546,17 @@
                     "type": "object",
                     "properties": {
                         "key": {
-                            "type" : "string"
+                            "type": "string"
                         },
                         "value": {
-                            "type" : "string"
+                            "type": "string"
                         }
                     }
                 }
 
             }
         },
-        "CkanApiOutput":{
+        "CkanApiOutput": {
             "type": "object",
             "properties": {
                 "help": {
@@ -550,7 +567,7 @@
                     "type": "boolean",
                     "location": "json"
                 },
-                "result":{
+                "result": {
                     "type": "object",
                     "location": "json"
                 }
@@ -560,19 +577,19 @@
             "type": "object",
             "properties": {
                 "package_id": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "date": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "description": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "url": {
-                    "type" : "string"
+                    "type": "string"
                 },
                 "format": {
-                    "type" : "string"
+                    "type": "string"
                 }
             }
         }
